@@ -7,12 +7,16 @@ import javax.swing.*;
 public class View extends JFrame {
     private JPanel menu;
     private JLabel lblTitle;
-    private JTextField textField1;
-    private JSpinner spinner1;
-    private JComboBox comboBox1;
+    private JTextField txtFProducto;
+    private JSpinner spCantidad;
+    private JComboBox cmbUnidad;
     private JButton eliminarButton;
     private JButton añadirButton;
-    private JList list1;
+    private JList listProductos;
+    private JLabel lvlProducto;
+    private JLabel lvlCantidad;
+    private JLabel lvlUnidad;
+    private JPanel panelControl;
 
     public View() {
         setContentPane(menu);
