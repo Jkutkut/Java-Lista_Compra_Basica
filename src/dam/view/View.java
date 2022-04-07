@@ -6,6 +6,13 @@ import javax.swing.*;
 
 public class View extends JFrame {
     private JPanel menu;
+    private JLabel lblTitle;
+    private JTextField textField1;
+    private JSpinner spinner1;
+    private JComboBox comboBox1;
+    private JButton eliminarButton;
+    private JButton añadirButton;
+    private JList list1;
 
     public View() {
         setContentPane(menu);
