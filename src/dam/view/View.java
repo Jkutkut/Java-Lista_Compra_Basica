@@ -5,6 +5,11 @@ import dam.model.Producto;
 import dam.model.UnidadesProducto;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 public class View extends JFrame {
@@ -88,6 +93,9 @@ public class View extends JFrame {
         setError("");
     }
 
+    /**
+     * Resetea el formulario.
+     */
     private void resetForm() {
         getTxtFProducto().setText("");
         getSpCantidad().setValue(0);
@@ -120,6 +128,9 @@ public class View extends JFrame {
         resetForm();
     }
 
+    /**
+     * Elimina un producto de la lista de productos.
+     */
     public void removeProduct() {
         if (listProductos.getSelectedIndex() == -1)
             return ;
