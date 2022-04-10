@@ -14,8 +14,8 @@ public class ListaCompra {
         productos.add(p);
     }
 
-    public void removeProducto(Producto p){
-        productos.remove(p);
+    public void removeProducto(int index){
+        productos.remove(index);
     }
 
     // GETTERS
@@ -25,5 +25,13 @@ public class ListaCompra {
 
     public int getSize(){
         return productos.size();
+    }
+
+    public boolean contains(Producto p){
+        return productos.contains(p);
+    }
+
+    public Object[] getProductos(){
+        return productos.toArray();
     }
 }

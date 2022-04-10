@@ -1,6 +1,7 @@
 package dam.view;
 
 import dam.control.Controller;
+import dam.model.ListaCompra;
 import dam.model.Producto;
 import dam.model.UnidadesProducto;
 
@@ -18,7 +19,6 @@ public class View extends JFrame {
     private JLabel lvlProducto;
     private JLabel lvlCantidad;
     private JLabel lvlUnidad;
-    private JLabel lblTitle;
 
     private JTextField txtFProducto;
     private JSpinner spCantidad;
@@ -28,17 +28,17 @@ public class View extends JFrame {
     private JList listProductos;
     private JLabel lblError;
 
-    private ArrayList<Producto> productos;
+    private ListaCompra listaProductos;
 
     public View() {
+        setTitle("Lista de la compra");
         setContentPane(menu);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
         initComponents();
 
-        productos = new ArrayList<Producto>();
+        listaProductos = new ListaCompra();
     }
 
     private void initComponents() {
@@ -118,12 +118,12 @@ public class View extends JFrame {
         }
         String unidad = getCmbUnidad().getSelectedItem().toString();
         Producto p = new Producto(name, cant, unidad);
-        if (productos.contains(p)) {
+        if (listaProductos.contains(p)) {
             setError("El producto ya existe");
             return ;
         }
-        productos.add(p);
-        listProductos.setListData(productos.toArray());
+        listaProductos.addProducto(p);
+        updateList();
         clearError();
         resetForm();
     }
@@ -132,9 +132,16 @@ public class View extends JFrame {
      * Elimina un producto de la lista de productos.
      */
     public void removeProduct() {
-        if (listProductos.getSelectedIndex() == -1)
-            return ;
-        productos.remove(listProductos.getSelectedIndex());
-        listProductos.setListData(productos.toArray());
+        if (listProductos.getSelectedIndex() == -1) {
+            setError("Debe seleccionar un producto para poder eliminarlo.");
+            return;
+        }
+        listaProductos.removeProducto(listProductos.getSelectedIndex());
+        updateList();
+        clearError();
+    }
+
+    private void updateList() {
+        listProductos.setListData(listaProductos.getProductos());
     }
 }
