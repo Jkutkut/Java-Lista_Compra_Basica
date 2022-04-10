@@ -3,6 +3,8 @@ package dam.model;
 import dam.exception.InvalidDataException;
 import dam.model.UnidadesProducto;
 
+import java.util.Objects;
+
 public class Producto {
 
     private String nombre;
@@ -45,5 +47,20 @@ public class Producto {
             "%s: %d %s",
             nombre, cantidad, unidad
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return  cantidad == producto.cantidad &&
+                Objects.equals(nombre, producto.nombre) &&
+                Objects.equals(unidad, producto.unidad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, cantidad, unidad);
     }
 }
