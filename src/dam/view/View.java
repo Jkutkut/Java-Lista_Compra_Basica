@@ -16,9 +16,10 @@ public class View extends JFrame {
     private JTextField txtFProducto;
     private JSpinner spCantidad;
     private JComboBox cmbUnidad;
-    private JButton añadirButton;
-    private JButton eliminarButton;
+    private JButton btnAdd;
+    private JButton btnDel;
     private JList listProductos;
+    private JLabel lblError;
 
 
     public View() {
@@ -36,9 +37,28 @@ public class View extends JFrame {
     }
 
     public void setControlador(Controller controller) {
-//        .addActionListener(controller);
+        btnAdd.addActionListener(controller);
+        btnDel.addActionListener(controller);
     }
 
     // GETTERS
+    public JButton getBtnAdd() {
+        return btnAdd;
+    }
 
+    public JButton getBtnDel() {
+        return btnDel;
+    }
+
+    public JTextField getTxtFProducto() {
+        return txtFProducto;
+    }
+
+    public JSpinner getSpCantidad() {
+        return spCantidad;
+    }
+
+    public JComboBox getCmbUnidad() {
+        return cmbUnidad;
+    }
 }

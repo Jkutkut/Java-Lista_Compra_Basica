@@ -15,7 +15,22 @@ public class Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() instanceof JButton)
+        if (e.getSource() instanceof JButton) {
+            JButton btn = (JButton) e.getSource();
+            if (btn == window.getBtnAdd()) {
+                addProduct();
+            }
+            else if (btn == window.getBtnDel()) {
+                removeProduct();
+            }
+        }
+    }
+
+    private void addProduct() {
+
+    }
+
+    private void removeProduct() {
     }
 
 }
