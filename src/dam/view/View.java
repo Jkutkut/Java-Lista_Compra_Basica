@@ -88,22 +88,42 @@ public class View extends JFrame {
         setError("");
     }
 
+    private void resetForm() {
+        getTxtFProducto().setText("");
+        getSpCantidad().setValue(0);
+        // getCmbUnidad().setSelectedIndex(0);
+    }
+
     /**
      * Añade un producto a la lista de productos si no existe ya.
-     *
-     * @param name Nombre del producto
-     * @param cant Cantidad del producto
-     * @param unidad Unidad del producto
-     * @return true si se ha añadido el producto, false en caso contrario.
      */
-    public boolean addNewProduct(String name, int cant, String unidad) {
+    public void addProduct() {
+        String name = getTxtFProducto().getText();
+        if (name.isEmpty()) {
+            setError("Debe ingresar un nombre");
+            return ;
+        }
+        int cant = (int) getSpCantidad().getValue();
+        if (cant <= 0) {
+            setError("Debe ingresar una cantidad válida");
+            return ;
+        }
+        String unidad = getCmbUnidad().getSelectedItem().toString();
         Producto p = new Producto(name, cant, unidad);
         if (productos.contains(p)) {
             setError("El producto ya existe");
-            return false;
+            return ;
         }
         productos.add(p);
         listProductos.setListData(productos.toArray());
-        return true;
+        clearError();
+        resetForm();
+    }
+
+    public void removeProduct() {
+        if (listProductos.getSelectedIndex() == -1)
+            return ;
+        productos.remove(listProductos.getSelectedIndex());
+        listProductos.setListData(productos.toArray());
     }
 }
