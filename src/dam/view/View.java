@@ -112,8 +112,8 @@ public class View extends JFrame {
             return ;
         }
         int cant = (int) getSpCantidad().getValue();
-        if (cant <= 0) {
-            setError("Debe ingresar una cantidad válida");
+        if (cant <= 0 || cant > 500) {
+            setError("Debe ingresar una cantidad válida (entre 1 y 500)");
             return ;
         }
         String unidad = getCmbUnidad().getSelectedItem().toString();
